@@ -1,0 +1,392 @@
+AWS Hands On
+Deadline : 12 January 2024 01:30 pm
+ 
+(USE AWS CLI)
+Create 6 IAM Users:
+1. Alice  
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name Alice
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Alice",
+        "UserId": "AIDATXEPQB7UDH4QZOH6F",
+        "Arn": "arn:aws:iam::255851499496:user/Alice",
+        "CreateDate": "2024-01-11T10:58:34Z"
+    }
+}
+
+2. Bob  
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name Bob
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Bob",
+        "UserId": "AIDATXEPQB7ULKHNPSDSF",
+        "Arn": "arn:aws:iam::255851499496:user/Bob",
+        "CreateDate": "2024-01-11T10:58:45Z"
+    }
+}
+
+3. Charles
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name Charles
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Charles",
+        "UserId": "AIDATXEPQB7UCKKAUIVUN",
+        "Arn": "arn:aws:iam::255851499496:user/Charles",
+        "CreateDate": "2024-01-11T10:58:55Z"
+    }
+}
+
+4. David 
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name David
+{
+    "User": {
+        "Path": "/",
+        "UserName": "David",
+        "UserId": "AIDATXEPQB7UBHWIV36FP",
+        "Arn": "arn:aws:iam::255851499496:user/David",
+        "CreateDate": "2024-01-11T10:59:06Z"
+    }
+}
+
+5. Edward 
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name Edward
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Edward",
+        "UserId": "AIDATXEPQB7UMAHASTUVP",
+        "Arn": "arn:aws:iam::255851499496:user/Edward",
+        "CreateDate": "2024-01-11T10:59:23Z"
+    }
+}
+
+6. Fred
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-user --user-name Fred
+{
+    "User": {
+        "Path": "/",
+        "UserName": "Fred",
+        "UserId": "AIDATXEPQB7UKLUUGV3L4",
+        "Arn": "arn:aws:iam::255851499496:user/Fred",
+        "CreateDate": "2024-01-11T10:59:34Z"
+    }
+}
+
+Create 3 groups:
+1. Developers 
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-group --group-name Developers
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "Developers",
+        "GroupId": "AGPATXEPQB7UE5LISW34L",
+        "Arn": "arn:aws:iam::255851499496:group/Developers",
+        "CreateDate": "2024-01-11T11:03:20Z"
+    }
+}
+
+2. Operations 
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-group --group-name Operations
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "Operations",
+        "GroupId": "AGPATXEPQB7UAQKVOPPUS",
+        "Arn": "arn:aws:iam::255851499496:group/Operations",
+        "CreateDate": "2024-01-11T11:03:32Z"
+    }
+}
+
+3. Audit-Team
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam create-group --group-name Audit-Team
+{
+    "Group": {
+        "Path": "/",
+        "GroupName": "Audit-Team",
+        "GroupId": "AGPATXEPQB7UJLOW4SYGJ",
+        "Arn": "arn:aws:iam::255851499496:group/Audit-Team",
+        "CreateDate": "2024-01-11T11:03:43Z"
+    }
+}
+
+1]Assign the "IAMReadOnlyAccess" policy to the Developers group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam attach-group-policy --group-name Developers --policy-arn arn:aws:iam::aws:policy/IAMReadOnlyAccess
+root@DESKTOP-VIDGD8F:AWS# aws iam list-attached-group-policies --group-name Developers
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "IAMReadOnlyAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS#
+
+2]Assign the "IAMReadOnlyAccess" policy to the Operations group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam attach-group-policy --group-name Operations --policy-arn arn:aws:iam::aws:policy/IAMReadOnlyAccess
+root@DESKTOP-VIDGD8F:AWS# aws iam list-attached-group-policies --group-name Operations
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "IAMReadOnlyAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/IAMReadOnlyAccess"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS#
+
+3]Assign the "IAMFullAccess" policy to the Audit-Team group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam attach-group-policy --group-name Audit-Team --policy-arn arn:aws:iam::aws:policy/IAMFullAccess
+root@DESKTOP-VIDGD8F:AWS# aws iam list-attached-group-policies --group-name Audit-Team
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "IAMFullAccess",
+            "PolicyArn": "arn:aws:iam::aws:policy/IAMFullAccess"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS#
+
+1]Add Alice, Bob, and Charles to the Developers group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Developers --user-name Alice
+root@DESKTOP-VIDGD8F:AWS#
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name Alice
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPATXEPQB7UE5LISW34L",
+            "Arn": "arn:aws:iam::255851499496:group/Developers",
+            "CreateDate": "2024-01-11T11:03:20Z"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Developers --user-name Bob
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name Bob
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPATXEPQB7UE5LISW34L",
+            "Arn": "arn:aws:iam::255851499496:group/Developers",
+            "CreateDate": "2024-01-11T11:03:20Z"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Developers --user-name Charles
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name Charles
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPATXEPQB7UE5LISW34L",
+            "Arn": "arn:aws:iam::255851499496:group/Developers",
+            "CreateDate": "2024-01-11T11:03:20Z"
+        },
+        {
+            "Path": "/",
+            "GroupName": "Audit-Team",
+            "GroupId": "AGPATXEPQB7UJLOW4SYGJ",
+            "Arn": "arn:aws:iam::255851499496:group/Audit-Team",
+            "CreateDate": "2024-01-11T11:03:43Z"
+        }
+    ]
+}
+
+2]Add David and Edward to the Operations group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Operations --user-name David
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name David
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Operations",
+            "GroupId": "AGPATXEPQB7UAQKVOPPUS",
+            "Arn": "arn:aws:iam::255851499496:group/Operations",
+            "CreateDate": "2024-01-11T11:03:32Z"
+        },
+        {
+            "Path": "/",
+            "GroupName": "Audit-Team",
+            "GroupId": "AGPATXEPQB7UJLOW4SYGJ",
+            "Arn": "arn:aws:iam::255851499496:group/Audit-Team",
+            "CreateDate": "2024-01-11T11:03:43Z"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Operations --user-name Edward
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name Edward
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Operations",
+            "GroupId": "AGPATXEPQB7UAQKVOPPUS",
+            "Arn": "arn:aws:iam::255851499496:group/Operations",
+            "CreateDate": "2024-01-11T11:03:32Z"
+        }
+    ]
+}
+
+3]Add Charles and David to the Audit-Team group.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Audit-Team --user-name Charles
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name Charles
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Developers",
+            "GroupId": "AGPATXEPQB7UE5LISW34L",
+            "Arn": "arn:aws:iam::255851499496:group/Developers",
+            "CreateDate": "2024-01-11T11:03:20Z"
+        },
+        {
+            "Path": "/",
+            "GroupName": "Audit-Team",
+            "GroupId": "AGPATXEPQB7UJLOW4SYGJ",
+            "Arn": "arn:aws:iam::255851499496:group/Audit-Team",
+            "CreateDate": "2024-01-11T11:03:43Z"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS# aws iam add-user-to-group --group-name Audit-Team --user-name David
+root@DESKTOP-VIDGD8F:AWS# aws iam list-groups-for-user --user-name David
+{
+    "Groups": [
+        {
+            "Path": "/",
+            "GroupName": "Operations",
+            "GroupId": "AGPATXEPQB7UAQKVOPPUS",
+            "Arn": "arn:aws:iam::255851499496:group/Operations",
+            "CreateDate": "2024-01-11T11:03:32Z"
+        },
+        {
+            "Path": "/",
+            "GroupName": "Audit-Team",
+            "GroupId": "AGPATXEPQB7UJLOW4SYGJ",
+            "Arn": "arn:aws:iam::255851499496:group/Audit-Team",
+            "CreateDate": "2024-01-11T11:03:43Z"
+        }
+    ]
+}
+
+4] Assign an inline policy to Fred.
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam attach-user-policy help
+root@DESKTOP-VIDGD8F:AWS# aws iam attach-user-policy --user-name Fred --policy-arn arn:aws:iam::255851499496:policy/saniyapolicy
+root@DESKTOP-VIDGD8F:AWS# aws iam list-attached-user-policies --user-name Fred
+{
+    "AttachedPolicies": [
+        {
+            "PolicyName": "saniyapolicy",
+            "PolicyArn": "arn:aws:iam::255851499496:policy/saniyapolicy"
+        }
+    ]
+}
+root@DESKTOP-VIDGD8F:AWS#
+
+1] Log into the AWS account as an IAM user,and list IAM user actions in terminal
+
+SOLUTION:-
+
+root@DESKTOP-VIDGD8F:AWS# aws iam list-users
+{
+    "Users": [
+        {
+            "Path": "/",
+            "UserName": "Alice",
+            "UserId": "AIDATXEPQB7UDH4QZOH6F",
+            "Arn": "arn:aws:iam::255851499496:user/Alice",
+            "CreateDate": "2024-01-11T10:58:34Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "Bob",
+            "UserId": "AIDATXEPQB7ULKHNPSDSF",
+            "Arn": "arn:aws:iam::255851499496:user/Bob",
+            "CreateDate": "2024-01-11T10:58:45Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "Charles",
+            "UserId": "AIDATXEPQB7UCKKAUIVUN",
+            "Arn": "arn:aws:iam::255851499496:user/Charles",
+            "CreateDate": "2024-01-11T10:58:55Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "David",
+            "UserId": "AIDATXEPQB7UBHWIV36FP",
+            "Arn": "arn:aws:iam::255851499496:user/David",
+            "CreateDate": "2024-01-11T10:59:06Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "Edward",
+            "UserId": "AIDATXEPQB7UMAHASTUVP",
+            "Arn": "arn:aws:iam::255851499496:user/Edward",
+            "CreateDate": "2024-01-11T10:59:23Z"
+        },
+        {
+            "Path": "/",
+            "UserName": "Fred",
+            "UserId": "AIDATXEPQB7UKLUUGV3L4",
+            "Arn": "arn:aws:iam::255851499496:user/Fred",
+            "CreateDate": "2024-01-11T10:59:34Z"
+        },
+    ]
+}
